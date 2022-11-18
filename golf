@@ -89,11 +89,46 @@ namespace CIS605AS6
         //set up loop to search the one demsinal 'par' array to determine the amount of pars 
         // then set up nested loop to look through all four rounds (each element) and then check to see if that score applies to that speicifc par. If if it does, you grab it and add it to total. 
        //coursePar subscript is equal to the subscript selected by the user
-        public double CalcAverageScoreByPar(int par)
+       
+       //no clue if the below is correct. 
+       public double CalcAverageScoreByPar(int par)
         {
-            
+             
+            int numRounds = ScoresByRound.GetLength(0);
+            int numHoles = ScoresByRound.GetLength(1);
+            int parHoles = CoursePars.GetLength(0);
 
+            int numHolesByPar = 0;
+            double totalParScore = 0;
+            int selectedPar = par;
+            double averageScoreByPar; 
+
+            for (int p = 0; p < parHoles; ++p)
+            {
+                if (selectedPar == CoursePars[p])
+                {
+                    ++numHolesByPar;
+                }
+            }
+            for (int round = 0; round < numRounds; ++round)
+            {
+                for (int hole = 0; hole < numHoles; ++hole)
+                {
+                    int parScore = 0;
+
+                    if (CoursePars[hole] == selectedPar)
+                    {
+                        parScore = ScoresByRound[round, hole];
+                    }
+                    totalParScore = parScore;
+                }
+
+            }
+
+            return averageScoreByPar = totalParScore / (numHolesByPar * 4); 
         }
+
+        
 
         /* A player's score for a given hole is "consistent" if it is the same for all four rounds. 
          * 
